@@ -2,7 +2,7 @@
 Багрянская Ульяна, БКЛ143
 
 ### Материалы
-Данные (https://github.com/UlyanaBagryanskaya/CG/blob/master/kuda_kak_nar.xml)  
+[Данные] (https://github.com/UlyanaBagryanskaya/CG/blob/master/kuda_kak_nar.xml)  
 [Ссылка на код, здесь целиком с комментарием](https://github.com/...) ( или ниже по тексту отдельными блоками )
 
 ## Рабочая гипотеза
