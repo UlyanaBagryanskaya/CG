@@ -2,8 +2,8 @@
 Багрянская Ульяна, БКЛ143
 
 ### Материалы
-[Данные](https://github.com/UlyanaBagryanskaya/CG/blob/master/kuda_kak_nar.xml)  
-[Ссылка на код, здесь целиком с комментарием](https://github.com/...) ( или ниже по тексту отдельными блоками )
+[Данные](/kuda_kak_01.csv)  
+[Ссылка на код, здесь целиком с комментарием](/kuda_kak_R.R) ( или ниже по тексту отдельными блоками )
 
 ## Рабочая гипотеза
 
@@ -94,6 +94,48 @@ t = -1.9433, df = 157.36, p-value = 0.05377
 Sem_size: 19 вхождений признака
 t = -2.6521, df = 196.65, p-value = 0.008653
 ![sem_size](/sem_size.png)
+
+## Random Forest
+<pre><code>
+library(party)
+library(randomForest)
+
+output.forest <- randomForest(Comp ~ Sub + SubAnimacy + DO + sem_humq + sem_abstract + 
+                                sem_freq + sem_physq + sem_size + sem_quant + sem_dist + 
+                                sem_speed, data = data, importance = TRUE)
+
+print(output.forest) 
+
+importance(output.forest)
+varImpPlot(output.forest, type=2)
+</code></pre>
+
+Выдача:
+<pre><code>
+Call:
+ randomForest(formula = Comp ~ Sub + SubAnimacy + DO + sem_humq +      sem_abstract + sem_freq + sem_physq + sem_size + sem_quant +      sem_dist + sem_speed, data = data, importance = TRUE) 
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 3
+
+          Mean of squared residuals: 0.2224508
+                    % Var explained: -1.4
+                    
+                %IncMSE IncNodePurity
+Sub            3.682304     1.2038208
+SubAnimacy    -9.684500     0.3185882
+DO             2.630211     0.9253108
+sem_humq       8.296805     0.8066256
+sem_abstract   1.800890     0.5335263
+sem_freq      -8.572786     0.1697123
+sem_physq     -3.332269     0.3325019
+sem_size      10.931057     0.7743413
+sem_quant     12.236944     1.4784960
+sem_dist       3.386108     0.6325609
+sem_speed    -10.501949     0.1975427
+</code></pre>
+
+![random_forest](/random_forest.png)
 
 ## Содержательный лингвистический анализ результатов статистического анализа
 Без содержательного анализа факторов выбора конструкции (взаимодействия выделенных вами переменных, их значимости/важности) проект не будет считаться выполненным.   
