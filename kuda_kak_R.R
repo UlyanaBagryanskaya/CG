@@ -85,7 +85,10 @@ t.test(data$sem_speed[data$Comp==0], data$sem_speed[data$Comp==1])
 
 
 # +_ significant ----------------------------------------------------------
-
+data$Sub <- as.logical(data$Sub)
+data$Comp <- as.logical(data$Comp)
+data$sem_humq <- as.logical(data$sem_humq)
+data$sem_size <- as.logical(data$sem_size)
 ggplot(data, aes(x = Sub, fill = Comp, group = Comp))+
   geom_bar(stat = "count",position=position_dodge())
 ggplot(data, aes(x = sem_humq, fill = Comp, group = Comp))+
@@ -99,13 +102,11 @@ ggplot(data, aes(x = sem_size, fill = Comp, group = Comp))+
 library(party)
 library(randomForest)
 
-output.forest <- randomForest(Comp ~ Sub +
-                                SubAnimacy + DO + sem_humq + sem_abstract + 
+output.forest <- randomForest(Comp ~ Sub + SubAnimacy + DO + sem_humq + sem_abstract + 
                                 sem_freq + sem_physq + sem_size + sem_quant + sem_dist + 
-                                sem_speed, 
-                              data = data, importance = TRUE)
+                                sem_speed, data = data, importance = TRUE)
 
 print(output.forest) 
 
 importance(output.forest)
-varImpPlot(output.forest, type=2) #plot MeanDecreaseGini
+varImpPlot(output.forest, type=2)
